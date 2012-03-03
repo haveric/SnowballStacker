@@ -1,7 +1,11 @@
 name: SnowballStacker
 main: haveric.snowballStacker.SnowballStacker
-version: 1.0
+version: 1.0.1
+author: haveric
 dev-url: http://dev.bukkit.org/server-mods/snowballstacker/
 description: >
-             Snow piles up when thrown
+             Snow piles up when thrown and turns water into ice
 commands:
+    snowballstacker:
+        description: Informs the user about the current settings
+        usage:

@@ -25,8 +25,13 @@ public class SBPlayerInteract implements Listener{
             Location location = entity.getLocation();
             World world = entity.getWorld();
             Block block = world.getBlockAt(location);
+            Material type = block.getType();
             
-            addSnowToBlock(block);
+            if (Config.canFreezeWater() && type == Material.STATIONARY_WATER){
+            	freezeWater(block);
+            } else {
+            	addSnowToBlock(block);
+            }
         }
 	}
 	
@@ -51,8 +56,14 @@ public class SBPlayerInteract implements Listener{
 		}
 	}
 
+	private void freezeWater(Block b){
+		if (b.getRelative(BlockFace.UP).getType() != Material.STATIONARY_WATER){
+			b.setType(Material.ICE);
+		}
+	}
+	
 	private boolean canHoldSnow(Block b){
-		boolean transparent = true;
+		boolean holdsSnow = true;
 		switch(b.getType()){
 			case AIR:
 			case SAPLING:
@@ -114,11 +125,11 @@ public class SBPlayerInteract implements Listener{
 			case ENDER_PORTAL:
 			case ENDER_PORTAL_FRAME:
 			case DRAGON_EGG:
-				transparent = false;
+				holdsSnow = false;
 				break;
 		default:
 			break;
 		}
-		return transparent;
+		return holdsSnow;
 	}
 }
