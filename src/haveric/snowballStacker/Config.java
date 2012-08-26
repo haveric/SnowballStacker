@@ -10,12 +10,14 @@ public class Config {
 
     private static SnowballStacker plugin;
 
-    private static String cfgFreezeWater = "Freeze Water";
+    private static String cfgFreezeWater = "Freeze_Water";
+    private static String cfgOnlySnowBiomes = "Only_Works_In_Snow_Biomes";
     private static FileConfiguration config;
     private static File configFile;
 
     // Defaults
     private static final boolean FREEZE_WATER_DEFAULT = true;
+    private static final boolean ONLY_SNOW_BIOMES_DEFAULT = true;
 
     /**
      * Initializes the config file
@@ -35,6 +37,9 @@ public class Config {
         boolean freeze = config.getBoolean(cfgFreezeWater, FREEZE_WATER_DEFAULT);
         config.set(cfgFreezeWater, freeze);
 
+        boolean onlySnow = config.getBoolean(cfgOnlySnowBiomes, ONLY_SNOW_BIOMES_DEFAULT);
+        config.set(cfgOnlySnowBiomes, onlySnow);
+
         saveConfig();
     }
 
@@ -52,7 +57,7 @@ public class Config {
     /**
      * Gets whether freezing water is enabled or not
      * @return true if freezing water is enabled<br>
-     *            false if disabled
+     *         false if disabled
      */
     public static boolean canFreezeWater() {
         return config.getBoolean(cfgFreezeWater);
@@ -64,6 +69,20 @@ public class Config {
      */
     public static void setFreezeWater(boolean freeze) {
         config.set(cfgFreezeWater, freeze);
+        saveConfig();
+    }
+
+    /**
+     * Gets whether you can stack snow only in snow biomes or all
+     * @return true if snow stacking only works in snow biomes<br>
+     *         false if snow stacking works in all biomes
+     */
+    public static boolean isOnlySnowBiomes() {
+        return config.getBoolean(cfgOnlySnowBiomes);
+    }
+
+    public static void setOnlySnowBiomes(boolean newOnlySnowBiomes) {
+        config.set(cfgOnlySnowBiomes, newOnlySnowBiomes);
         saveConfig();
     }
 }

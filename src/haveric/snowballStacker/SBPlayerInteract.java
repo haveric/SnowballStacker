@@ -3,9 +3,12 @@ package haveric.snowballStacker;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -23,15 +26,37 @@ public class SBPlayerInteract implements Listener {
     public void onProjectileHitEvent(ProjectileHitEvent event) {
         Entity entity = event.getEntity();
         if (entity instanceof Snowball) {
-            Location location = entity.getLocation();
-            World world = entity.getWorld();
+            Snowball snowball = (Snowball) entity;
+
+            Location location = snowball.getLocation();
+            World world = snowball.getWorld();
             Block block = world.getBlockAt(location);
             Material type = block.getType();
 
-            if (Config.canFreezeWater() && type == Material.STATIONARY_WATER) {
-                freezeWater(block);
-            } else {
-                addSnowToBlock(block);
+            boolean canPlace = true;
+
+            if (Config.isOnlySnowBiomes()) {
+                Biome biome = block.getBiome();
+                if (biome == Biome.FROZEN_OCEAN || biome == Biome.FROZEN_RIVER || biome == Biome.ICE_MOUNTAINS || biome == Biome.ICE_PLAINS || biome == Biome.TAIGA || biome == Biome.TAIGA_HILLS) {
+                    canPlace = true;
+                } else {
+                    canPlace = false;
+                }
+            }
+
+            LivingEntity livingEntity = snowball.getShooter();
+
+            if (canPlace && livingEntity instanceof Player) {
+                Player player = (Player) livingEntity;
+                canPlace = Guard.canPlace(player, location);
+            }
+
+            if (canPlace) {
+                if (Config.canFreezeWater() && type == Material.STATIONARY_WATER) {
+                    freezeWater(block);
+                } else {
+                    addSnowToBlock(block);
+                }
             }
         }
     }

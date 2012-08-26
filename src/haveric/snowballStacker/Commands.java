@@ -34,6 +34,14 @@ public class Commands implements CommandExecutor {
                     freeze = "disabled.";
                 }
                 sender.sendMessage("Freezing ice is: " + highlightColor + freeze);
+
+                String onlySnow;
+                if (Config.isOnlySnowBiomes()) {
+                    onlySnow = "only snow biomes.";
+                } else {
+                    onlySnow = "all biomes.";
+                }
+                sender.sendMessage("Snow piles enabled for: " + highlightColor + onlySnow);
             }
         }
         return false;

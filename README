@@ -1,15 +1,22 @@
-Version 1.0.1
-
 Snowball Stacker
 
 Allows you to throw snowballs and create piles of snow or turn water into ice.
 
+Todo:
+* Add optional support for Towny (Partially implemented)
 
 Changelog:
 
+Version 1.0.2 (8/26/2012)
+* Added optional support for WorldGuard. Prevents people who don't have "build" permissions from stacking snow in a region.
+* Adding Metrics support. To opt out, set "opt-out: true" in PluginMetrics/config.yml
+* Changed config option "Freeze Water" to "Freeze_Water"
+* Added config option "Only_Works_In_Snow_Biomes"
+
+
 Version 1.0.1 (3/3/2012)
-+ Added an optional configuration to freeze water. 
-+ Added the default command /snowballstacker
+* Added an optional configuration to freeze water. 
+* Added the default command /snowballstacker
 
 Version 1.0 (3/1/2012)
 - Initial Release
