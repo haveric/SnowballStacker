@@ -8,6 +8,13 @@ Todo:
 
 Changelog:
 
+Version ???
+* Use plugin logger instead of Minecraft logger
+* Added permissions:
+** snowballstacker.stack: Allows user/group to stack snow
+** snowballstacker.freeze: Allows user/group to freeze water
+** Use snowballstacker.* for all permissions
+
 Version 1.0.2 (8/26/2012)
 * Added optional support for WorldGuard. Prevents people who don't have "build" permissions from stacking snow in a region.
 * Adding Metrics support. To opt out, set "opt-out: true" in PluginMetrics/config.yml

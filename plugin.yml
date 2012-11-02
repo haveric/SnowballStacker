@@ -10,3 +10,15 @@ commands:
     snowballstacker:
         description: Informs the user about the current settings
         usage:
+permissions:
+    snowballstacker.*:
+        description: Gives access to all SnowballStacker Commands
+        children:
+            snowballstacker.stack: true
+            snowballstacker.freeze: true
+    snowballstacker.stack:
+        description: Allows user to stack piles of snow by throwing snowballs.
+        default: false
+    snowballstacker.freeze:
+        description: Allows user to freeze water by throwing snowballs.
+        default: false

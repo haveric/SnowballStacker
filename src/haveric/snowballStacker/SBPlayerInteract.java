@@ -45,17 +45,22 @@ public class SBPlayerInteract implements Listener {
             }
 
             LivingEntity livingEntity = snowball.getShooter();
-
+        	
+            Player player = null;
             if (canPlace && livingEntity instanceof Player) {
-                Player player = (Player) livingEntity;
+                player = (Player) livingEntity;
                 canPlace = Guard.canPlace(player, location);
             }
 
             if (canPlace) {
                 if (Config.canFreezeWater() && type == Material.STATIONARY_WATER) {
-                    freezeWater(block);
+                	if (player == null || Perms.canFreeze(player)) {
+                		freezeWater(block);
+                	}
                 } else {
-                    addSnowToBlock(block);
+                	if (player == null || Perms.canStack(player)) {
+                		addSnowToBlock(block);
+                	}
                 }
             }
         }
