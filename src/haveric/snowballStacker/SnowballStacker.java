@@ -3,7 +3,6 @@ package haveric.snowballStacker;
 //import java.util.logging.Logger;
 
 import haveric.snowballStacker.mcstats.Metrics;
-import haveric.snowballStacker.mcstats.Metrics.Graph;
 
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -17,16 +16,17 @@ import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 public class SnowballStacker extends JavaPlugin {
 	private static Logger log;
 
-    private final SBPlayerInteract playerInteract = new SBPlayerInteract(this);
-    private Commands commands = new Commands(this);
+    private Commands commands;
 
     private Metrics metrics;
 
     @Override
     public void onEnable() {
-    	log = getLogger();
+        log = getLogger();
+        commands = new Commands(this);
+
         PluginManager pm = getServer().getPluginManager();
-        pm.registerEvents(playerInteract, this);
+        pm.registerEvents(new SBPlayerInteract(), this);
 
         Config.init(this);
 
@@ -37,7 +37,7 @@ public class SnowballStacker extends JavaPlugin {
 
         Config.setup();
 
-        getCommand(Commands.getMain()).setExecutor(commands);
+        getCommand(commands.getMain()).setExecutor(commands);
 
         setupMetrics();
     }
@@ -68,18 +68,6 @@ public class SnowballStacker extends JavaPlugin {
     private void setupMetrics() {
         try {
             metrics = new Metrics(this);
-
-            // Custom data
-            Graph javaGraph = metrics.createGraph("Java Version");
-            String javaVersion = System.getProperty("java.version");
-            javaGraph.addPlotter(new Metrics.Plotter(javaVersion) {
-                @Override
-                public int getValue() {
-                    return 1;
-                }
-            });
-            metrics.addGraph(javaGraph);
-            // End Custom data
 
             metrics.start();
         } catch (IOException e) {

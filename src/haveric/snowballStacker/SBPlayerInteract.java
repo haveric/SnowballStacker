@@ -16,11 +16,7 @@ import org.bukkit.event.entity.ProjectileHitEvent;
 
 public class SBPlayerInteract implements Listener {
 
-    //private SnowballStacker plugin;
-
-    public SBPlayerInteract(SnowballStacker snowballStacker) {
-        //plugin = snowballStacker;
-    }
+    public SBPlayerInteract() { }
 
     @EventHandler
     public void onProjectileHitEvent(ProjectileHitEvent event) {
@@ -45,7 +41,7 @@ public class SBPlayerInteract implements Listener {
             }
 
             LivingEntity livingEntity = snowball.getShooter();
-        	
+
             Player player = null;
             if (canPlace && livingEntity instanceof Player) {
                 player = (Player) livingEntity;
@@ -54,13 +50,13 @@ public class SBPlayerInteract implements Listener {
 
             if (canPlace) {
                 if (Config.canFreezeWater() && type == Material.STATIONARY_WATER) {
-                	if (player == null || Perms.canFreeze(player)) {
-                		freezeWater(block);
-                	}
+                    if (player == null || Perms.canFreeze(player)) {
+                        freezeWater(block);
+                    }
                 } else {
-                	if (player == null || Perms.canStack(player)) {
-                		addSnowToBlock(block);
-                	}
+                    if (player == null || Perms.canStack(player)) {
+                        addSnowToBlock(block);
+                    }
                 }
             }
         }
@@ -96,66 +92,97 @@ public class SBPlayerInteract implements Listener {
     private boolean canHoldSnow(Block b) {
         boolean holdsSnow = true;
         switch(b.getType()) {
+            case ACTIVATOR_RAIL:
             case AIR:
-            case SAPLING:
-            case WATER:
-            case STATIONARY_WATER:
-            case LAVA:
-            case STATIONARY_LAVA:
+            case ANVIL:
+            case BEACON:
             case BED:
             case BED_BLOCK:
-            case POWERED_RAIL:
-            case DETECTOR_RAIL:
-            case WEB:
-            case LONG_GRASS:
-            case DEAD_BUSH:
-            case YELLOW_FLOWER:
-            case RED_ROSE:
+            case BIRCH_WOOD_STAIRS:
+            case BREWING_STAND:
+            case BRICK_STAIRS:
             case BROWN_MUSHROOM:
-            case RED_MUSHROOM:
-            case TORCH:
-            case REDSTONE_WIRE:
-            case WOOD_STAIRS:
-            case SIGN_POST:
-            case WOODEN_DOOR:
-            case LADDER:
-            case RAILS:
-            case SIGN:
-            case LEVER:
-            case STONE_PLATE:
-            case IRON_DOOR:
-            case WOOD_PLATE:
-            case REDSTONE_TORCH_ON:
-            case REDSTONE_TORCH_OFF:
-            case STONE_BUTTON:
-            case SUGAR_CANE:
-            case FENCE:
-            case PORTAL:
-            case CAKE:
+            case CACTUS:
             case CAKE_BLOCK:
+            case CAULDRON:
+            case CHEST:
+            case COBBLE_WALL:
+            case COBBLESTONE_STAIRS:
+            case CROPS:
+            case DAYLIGHT_DETECTOR:
+            case DEAD_BUSH:
+            case DETECTOR_RAIL:
+            case DRAGON_EGG:
             case DIODE_BLOCK_OFF:
             case DIODE_BLOCK_ON:
-            case CHEST:
-            case TRAP_DOOR:
-            case IRON_FENCE:
-            case THIN_GLASS:
-            case PUMPKIN_STEM:
-            case MELON_STEM:
-            case VINE:
-            case FENCE_GATE:
-            case BRICK_STAIRS:
-            case SMOOTH_STAIRS:
-            case WATER_LILY:
-            case NETHER_FENCE:
-            case NETHER_BRICK_STAIRS:
-            case NETHER_WARTS:
-            case NETHER_STALK:
             case ENCHANTMENT_TABLE:
-            case BREWING_STAND:
-            case CAULDRON:
-            case ENDER_PORTAL:
-            case ENDER_PORTAL_FRAME:
-            case DRAGON_EGG:
+            case ENDER_CHEST:
+            case FENCE:
+            case FENCE_GATE:
+            case FIRE:
+            case FLOWER_POT:
+            case GLASS:
+            case GLOWSTONE:
+            case GOLD_PLATE:
+            case ICE:
+            case IRON_FENCE:
+            case IRON_PLATE:
+            case JUNGLE_WOOD_STAIRS:
+            case LADDER:
+            case LAVA:
+            case LEAVES:
+            case LEVER:
+            case LOCKED_CHEST:
+            case LONG_GRASS:
+            case NETHER_BRICK_STAIRS:
+            case NETHER_FENCE:
+            case NETHER_STALK:
+            case NETHER_WARTS:
+            case PISTON_BASE:
+            case PISTON_EXTENSION:
+            case PISTON_MOVING_PIECE:
+            case PISTON_STICKY_BASE:
+            case POWERED_RAIL:
+            case PUMPKIN_STEM:
+            case QUARTZ_STAIRS:
+            case RAILS:
+            case REDSTONE_COMPARATOR_OFF:
+            case REDSTONE_COMPARATOR_ON:
+            case REDSTONE_TORCH_OFF:
+            case REDSTONE_TORCH_ON:
+            case REDSTONE_WIRE:
+            case RED_MUSHROOM:
+            case SANDSTONE_STAIRS:
+            case SAPLING:
+            case SIGN:
+            case SIGN_POST:
+            case SKULL:
+            case SMOOTH_STAIRS:
+            case SNOW:
+            case SPRUCE_WOOD_STAIRS:
+            case STATIONARY_LAVA:
+            case STATIONARY_WATER:
+            case STEP:
+            case STONE_BUTTON:
+            case STONE_PLATE:
+            case SUGAR_CANE_BLOCK:
+            case THIN_GLASS:
+            case TNT:
+            case TORCH:
+            case TRAPPED_CHEST:
+            case TRAP_DOOR:
+            case TRIPWIRE:
+            case TRIPWIRE_HOOK:
+            case VINE:
+            case WATER:
+            case WATER_LILY:
+            case WEB:
+            case WHEAT:
+            case WOOD_BUTTON:
+            case WOOD_PLATE:
+            case WOOD_STAIRS:
+            case WOOD_STEP:
+            case YELLOW_FLOWER:
                 holdsSnow = false;
                 break;
         default:

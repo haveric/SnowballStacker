@@ -1,6 +1,6 @@
 name: SnowballStacker
 main: haveric.snowballStacker.SnowballStacker
-version: 1.0.2
+version: 1.0.3
 author: haveric
 dev-url: http://dev.bukkit.org/server-mods/snowballstacker/
 softdepend: [WorldGuard]
@@ -14,6 +14,7 @@ permissions:
     snowballstacker.*:
         description: Gives access to all SnowballStacker Commands
         children:
+            snowballstacker.adjust: true
             snowballstacker.stack: true
             snowballstacker.freeze: true
     snowballstacker.stack:
@@ -21,4 +22,7 @@ permissions:
         default: false
     snowballstacker.freeze:
         description: Allows user to freeze water by throwing snowballs.
+        default: false
+    snowballstacker.adjust:
+        description: Allows user/group to use setfreeze and setsnow commands
         default: false
