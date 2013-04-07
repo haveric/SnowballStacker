@@ -11,10 +11,13 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import Guard.Guard;
+
+import com.palmergames.bukkit.towny.Towny;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 
 public class SnowballStacker extends JavaPlugin {
-	private static Logger log;
+    public Logger log;
 
     private Commands commands;
 
@@ -29,11 +32,12 @@ public class SnowballStacker extends JavaPlugin {
         pm.registerEvents(new SBPlayerInteract(), this);
 
         Config.init(this);
+        Guard.init(this);
 
         // WorldGuard
         setupWorldGuard(pm);
         // Towny
-        //setupTowny(pm);
+        setupTowny(pm);
 
         Config.setup();
 
@@ -55,7 +59,7 @@ public class SnowballStacker extends JavaPlugin {
             Guard.setWorldGuard((WorldGuardPlugin) worldGuard);
         }
     }
-/*
+
     private void setupTowny(PluginManager pm) {
         Plugin towny = pm.getPlugin("Towny");
         if (towny ==  null || !(towny instanceof Towny)) {
@@ -64,7 +68,7 @@ public class SnowballStacker extends JavaPlugin {
             Guard.setTowny((Towny) towny);
         }
     }
-*/
+
     private void setupMetrics() {
         try {
             metrics = new Metrics(this);

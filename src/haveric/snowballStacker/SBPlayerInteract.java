@@ -14,6 +14,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
 
+import Guard.Guard;
+
 public class SBPlayerInteract implements Listener {
 
     public SBPlayerInteract() { }
@@ -63,6 +65,7 @@ public class SBPlayerInteract implements Listener {
     }
 
     private void addSnowToBlock(Block b) {
+
         Block downBlock = b.getRelative(BlockFace.DOWN);
         Material downType = downBlock.getType();
         Material type = b.getType();
