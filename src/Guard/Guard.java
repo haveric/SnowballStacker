@@ -67,27 +67,14 @@ public class Guard {
 
         ChatColor buildColor = ChatColor.GREEN;
         ChatColor blockedColor = ChatColor.RED;
-        ChatColor hlColor = ChatColor.YELLOW;
 
         String playerName = player.getName();
         if (canPlace && townyEnabled()) {
-            plugin.log.info("Player: " + playerName);
-            plugin.log.info("  OwnTownBuildPerms: " + canTownyBuildOwnTown(player));
-            plugin.log.info("  AllTownBuildPerms: " +  canTownyBuildAllTown(player));
-            plugin.log.info("  WildBuildPerms: " +  canTownyBuildWild(player));
-            plugin.log.info("  Is Mayor: " + isTownyMayor(playerName, location));
-            plugin.log.info("  Is Assistant: " + isTownyAssistant(playerName, location));
-            plugin.log.info("  Is Resident: " + isTownyResident(playerName, location));
-            plugin.log.info("  Is TownPlot Owner: " + isTownyPlotOwner(playerName, location));
-            plugin.log.info("  In Wild? : " + inTownyWilderness(location));
-            plugin.log.info("  Is Ally? : " + isAlly(playerName, location));
-            plugin.log.info("  Can Ally Build: " + canAllyBuild(playerName, location));
-
             if (inTownyWilderness(location) && canTownyBuildWild(player)) {
                 player.sendMessage(buildColor + "In wild and can build.");
             } else if (canTownyBuildAllTown(player)) {
                 player.sendMessage(buildColor + "In any town and can build.");
-            } else if (canTownyBuildOwnTown(player) && isTownyResident(playerName, location)) {
+            } else if (canTownyBuildOwnTown(player, location) && isTownyResident(playerName, location)) {
                 player.sendMessage(buildColor + "In your town and can build.");
             } else if (isTownyMayor(playerName, location)) {
                 player.sendMessage(buildColor + "Mayor of this town and can build.");
@@ -95,27 +82,37 @@ public class Guard {
                 player.sendMessage(buildColor + "Assistant of this town and can build.");
             } else if (isTownyPlotOwner(playerName, location)) {
                 player.sendMessage(buildColor + "In your own plot and can build.");
-            } else if (canAllyBuild(player.getName(), location) && isAlly(playerName, location)) {
+            } else if (canAllyBuild(location) && isAlly(playerName, location)) {
                 player.sendMessage(buildColor + "In your allies plot and can build.");
+            } else if (isTownyOutsider(playerName, location) && canOutsiderBuild(location)) {
+                player.sendMessage(buildColor + "Outsider of this town and can build.");
             } else {
                 player.sendMessage(blockedColor + "No build perms found");
                 canPlace = false;
             }
-        }
 
+        }
         return canPlace;
     }
 
-    private static boolean canTownyBuildOwnTown(Player player) {
+    public static boolean canTownyBuildOwnTown(Player player, Location location) {
         boolean canBuild = false;
 
         if (townyEnabled()) {
             canBuild = player.hasPermission(permTownyBuildOwnTown);
+
+            if (!canBuild) {
+                TownBlock townBlock = TownyUniverse.getTownBlock(location);
+
+                if (townBlock != null) {
+                    canBuild = townBlock.getPermissions().getResidentPerm(ActionType.BUILD);
+                }
+            }
         }
         return canBuild;
     }
 
-    private static boolean canTownyBuildAllTown(Player player) {
+    public static boolean canTownyBuildAllTown(Player player) {
         boolean canBuild = false;
 
         if (townyEnabled()) {
@@ -124,7 +121,7 @@ public class Guard {
         return canBuild;
     }
 
-    private static boolean canTownyBuildWild(Player player) {
+    public static boolean canTownyBuildWild(Player player) {
         boolean canBuild = false;
 
         if (townyEnabled()) {
@@ -133,7 +130,7 @@ public class Guard {
         return canBuild;
     }
 
-    private static boolean isTownyResident(String playerName, Location location) {
+    public static boolean isTownyResident(String playerName, Location location) {
         boolean isResident = false;
 
         if (townyEnabled()) {
@@ -154,7 +151,11 @@ public class Guard {
         return isResident;
     }
 
-    private static boolean isTownyMayor(String playerName, Location location) {
+    public static boolean isTownyOutsider(String playerName, Location location) {
+        return !isTownyResident(playerName, location);
+    }
+
+    public static boolean isTownyMayor(String playerName, Location location) {
         boolean isMayor = false;
 
         if (townyEnabled()) {
@@ -181,7 +182,7 @@ public class Guard {
         return isMayor;
     }
 
-    private static boolean isTownyAssistant(String playerName, Location location) {
+    public static boolean isTownyAssistant(String playerName, Location location) {
         boolean isAssistant = false;
 
         if (townyEnabled()) {
@@ -205,7 +206,7 @@ public class Guard {
         return isAssistant;
     }
 
-    private static boolean isTownyPlotOwner(String playerName, Location location) {
+    public static boolean isTownyPlotOwner(String playerName, Location location) {
         boolean isPlotOwner = false;
 
         if (townyEnabled()) {
@@ -226,7 +227,7 @@ public class Guard {
         return isPlotOwner;
     }
 
-    private static boolean canAllyBuild(String allyName, Location location) {
+    public static boolean canAllyBuild(Location location) {
         boolean allyCanBuild = false;
 
         if (townyEnabled()) {
@@ -239,7 +240,20 @@ public class Guard {
         return allyCanBuild;
     }
 
-    private static boolean isAlly(String playerName, Location location) {
+    public static boolean canOutsiderBuild(Location location) {
+        boolean outsiderCanBuild = false;
+
+        if (townyEnabled()) {
+            TownBlock townBlock = TownyUniverse.getTownBlock(location);
+            if (townBlock != null) {
+                outsiderCanBuild = townBlock.getPermissions().getOutsiderPerm(ActionType.BUILD);
+            }
+        }
+
+        return outsiderCanBuild;
+    }
+
+    public static boolean isAlly(String playerName, Location location) {
         boolean isAlly = false;
 
         if (townyEnabled()) {
@@ -261,7 +275,7 @@ public class Guard {
         return isAlly;
     }
 
-    private static boolean inTownyWilderness(Location location) {
+    public static boolean inTownyWilderness(Location location) {
         boolean inWilderness = false;
 
         if (townyEnabled()) {
