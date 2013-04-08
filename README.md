@@ -7,7 +7,7 @@
 * Working on Towny support
 * Added /ss alias for /snowballstacker
 * Changed permission node snowballstacker.adjust to snowballstacker.admin
-* Added /snowballstacker perms command. Op's and Admin's can use these to see the plugin's permissions.
+* Added "/snowballstacker perms" command. Op's and Admin's can use these to see the plugin's permissions.
 
 #### Version 1.03 (3/17/2013)
 * Use plugin logger instead of Minecraft logger

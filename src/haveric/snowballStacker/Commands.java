@@ -91,9 +91,11 @@ public class Commands implements CommandExecutor {
             } else if (args.length == 1 && (args[0].equalsIgnoreCase(cmdPerms) || args[0].equalsIgnoreCase(cmdPermsAlt))) {
                 if (op || hasAdminPerm) {
                     sender.sendMessage(title + "Permission Nodes:");
-                    sender.sendMessage(Perms.getPermStack() + " - Allows stacking of snow by throwing snowballs.");
-                    sender.sendMessage(Perms.getPermFreeze() + " - Allows freezing water by throwing snowballs.");
-                    sender.sendMessage(Perms.getPermAdmin() + " - Allows use of admin commands.");
+                    sender.sendMessage(Perms.getPermStack() + " - " + msgColor + "Allows stacking of snow by throwing snowballs.");
+                    sender.sendMessage(Perms.getPermFreeze() + " - " + msgColor + "Allows freezing water by throwing snowballs.");
+                    sender.sendMessage(Perms.getPermAdmin() + " - " + msgColor + "Allows use of admin commands.");
+                } else {
+                    sender.sendMessage(title + ChatColor.RED + "You must be an op or have admin perms to see permission nodes.");
                 }
             } else if (args.length == 1 && args[0].equalsIgnoreCase("towny")) {
                 if (sender instanceof Player) {
