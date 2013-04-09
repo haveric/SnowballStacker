@@ -4,7 +4,7 @@
 ### Changelog:
 
 #### Coming soon:
-* Working on Towny support
+* Towny support
 * Added /ss alias for /snowballstacker
 * Changed permission node snowballstacker.adjust to snowballstacker.admin
 * Added "/snowballstacker perms" command. Op's and Admin's can use these to see the plugin's permissions.
