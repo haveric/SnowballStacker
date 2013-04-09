@@ -4,7 +4,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import com.palmergames.bukkit.towny.Towny;
-import com.palmergames.bukkit.towny.object.TownyPermission;
+import com.palmergames.bukkit.towny.object.TownyPermission.ActionType;
 import com.palmergames.bukkit.towny.utils.PlayerCacheUtil;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 
@@ -17,7 +17,7 @@ public class Guard {
         worldGuard = newWorldGuard;
     }
 
-    public static boolean worldGuardEnabled() {
+    private static boolean worldGuardEnabled() {
         return (worldGuard != null);
     }
 
@@ -39,7 +39,7 @@ public class Guard {
         if (canPlace && townyEnabled()) {
             int snowTypeId = 78;
             byte snowData = 0;
-            canPlace = PlayerCacheUtil.getCachePermission(player, location, snowTypeId, snowData, TownyPermission.ActionType.BUILD);
+            canPlace = PlayerCacheUtil.getCachePermission(player, location, snowTypeId, snowData, ActionType.BUILD);
         }
 
         return canPlace;
