@@ -12,7 +12,6 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-
 import com.palmergames.bukkit.towny.Towny;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 
@@ -32,7 +31,6 @@ public class SnowballStacker extends JavaPlugin {
         pm.registerEvents(new SBPlayerInteract(), this);
 
         Config.init(this);
-        Guard.init(this);
 
         // WorldGuard
         setupWorldGuard(pm);

@@ -1,7 +1,5 @@
 package haveric.snowballStacker.guard;
 
-import haveric.snowballStacker.SnowballStacker;
-
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -14,12 +12,6 @@ public class Guard {
 
     private static WorldGuardPlugin worldGuard = null;
     private static Towny towny = null;
-
-
-    private static SnowballStacker plugin;
-    public static void init(SnowballStacker ss) {
-        plugin = ss;
-    }
 
     public static void setWorldGuard(WorldGuardPlugin newWorldGuard) {
         worldGuard = newWorldGuard;
