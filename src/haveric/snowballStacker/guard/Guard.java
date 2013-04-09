@@ -1,4 +1,4 @@
-package Guard;
+package haveric.snowballStacker.guard;
 
 import haveric.snowballStacker.SnowballStacker;
 

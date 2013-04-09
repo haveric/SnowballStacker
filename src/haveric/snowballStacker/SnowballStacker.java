@@ -2,6 +2,7 @@ package haveric.snowballStacker;
 
 //import java.util.logging.Logger;
 
+import haveric.snowballStacker.guard.Guard;
 import haveric.snowballStacker.mcstats.Metrics;
 
 import java.io.IOException;
@@ -11,7 +12,6 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import Guard.Guard;
 
 import com.palmergames.bukkit.towny.Towny;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;

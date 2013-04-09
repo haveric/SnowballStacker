@@ -1,5 +1,7 @@
 package haveric.snowballStacker;
 
+import haveric.snowballStacker.guard.Guard;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -14,7 +16,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
 
-import Guard.Guard;
 
 public class SBPlayerInteract implements Listener {
 
