@@ -3,13 +3,13 @@
 
 ### Changelog:
 
-#### Coming soon:
+#### Version 1.0.4 (4/12/2013):
 * Towny support
 * Added /ss alias for /snowballstacker
 * Changed permission node snowballstacker.adjust to snowballstacker.admin
 * Added "/snowballstacker perms" command. Op's and Admin's can use these to see the plugin's permissions.
 
-#### Version 1.03 (3/17/2013)
+#### Version 1.0.3 (3/17/2013)
 * Use plugin logger instead of Minecraft logger
 * Added permissions:
     * snowballstacker.stack: Allows user/group to stack snow
