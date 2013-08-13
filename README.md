@@ -3,6 +3,9 @@
 
 ### Changelog:
 
+#### Version 1.0.5
+* Added carpet to list of blocks that don't support snow
+
 #### Version 1.0.4 (4/12/2013):
 * Towny support
 * Added /ss alias for /snowballstacker

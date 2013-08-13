@@ -108,6 +108,7 @@ public class SBPlayerInteract implements Listener {
             case BROWN_MUSHROOM:
             case CACTUS:
             case CAKE_BLOCK:
+            case CARPET:
             case CAULDRON:
             case CHEST:
             case COBBLE_WALL:
