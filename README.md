@@ -6,6 +6,7 @@
 #### Version 1.0.5
 * Added carpet to list of blocks that don't support snow
 * Update Metrics to R7
+* Removed extra "[SnowballStacker]" being logged
 
 #### Version 1.0.4 (4/12/2013):
 * Towny support
