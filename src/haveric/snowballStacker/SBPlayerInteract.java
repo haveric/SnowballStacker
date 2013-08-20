@@ -1,5 +1,6 @@
 package haveric.snowballStacker;
 
+import haveric.snowballStacker.blockLogger.BlockLogger;
 import haveric.snowballStacker.guard.Guard;
 
 import org.bukkit.Location;
@@ -8,6 +9,7 @@ import org.bukkit.World;
 import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.BlockState;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -54,26 +56,27 @@ public class SBPlayerInteract implements Listener {
             if (canPlace) {
                 if (Config.canFreezeWater() && type == Material.STATIONARY_WATER) {
                     if (player == null || Perms.canFreeze(player)) {
-                        freezeWater(block);
+                        freezeWater(player, block);
                     }
                 } else {
                     if (player == null || Perms.canStack(player)) {
-                        addSnowToBlock(block);
+                        addSnowToBlock(player, block);
                     }
                 }
             }
         }
     }
 
-    private void addSnowToBlock(Block b) {
-
+    private void addSnowToBlock(Player player, Block b) {
         Block downBlock = b.getRelative(BlockFace.DOWN);
         Material downType = downBlock.getType();
         Material type = b.getType();
 
         if (type == Material.AIR && (downType == Material.AIR || downType == Material.SNOW)) {
-            addSnowToBlock(downBlock);
+            addSnowToBlock(player, downBlock);
         } else {
+            BlockState oldState = b.getState();
+
             int data = b.getData();
             if (type == Material.AIR && canHoldSnow(downBlock)) {
                 b.setTypeIdAndData(Material.SNOW.getId(), (byte) 0, true);
@@ -84,12 +87,24 @@ public class SBPlayerInteract implements Listener {
                     b.setTypeIdAndData(Material.SNOW.getId(), (byte) (data + 1), true);
                 }
             }
+
+            BlockState newState = b.getState();
+            if (player != null) {
+                BlockLogger.logBlock(player.getName(), oldState, newState);
+            }
         }
     }
 
-    private void freezeWater(Block b) {
+    private void freezeWater(Player player, Block b) {
         if (b.getRelative(BlockFace.UP).getType() != Material.STATIONARY_WATER) {
+            BlockState oldState = b.getState();
+
             b.setType(Material.ICE);
+
+            BlockState newState = b.getState();
+            if (player != null) {
+                BlockLogger.logBlock(player.getName(), oldState, newState);
+            }
         }
     }
 

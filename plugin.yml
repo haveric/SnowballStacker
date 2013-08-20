@@ -1,9 +1,9 @@
 name: SnowballStacker
 main: haveric.snowballStacker.SnowballStacker
-version: 1.0.4
+version: 1.0.5
 author: haveric
 dev-url: http://dev.bukkit.org/server-mods/snowballstacker/
-softdepend: [WorldGuard, Towny]
+softdepend: [WorldGuard, Towny, CoreProtect, LogBlock]
 description: >
              Snow piles up when thrown and turns water into ice
 commands:
