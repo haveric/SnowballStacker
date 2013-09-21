@@ -3,6 +3,9 @@
 
 ### Changelog:
 
+#### Version 1.0.6
+* Removed Metrics as the service has been discontinued.
+
 #### Version 1.0.5 (8/20/2013)
 * Added carpet to list of blocks that don't support snow
 * Update Metrics to R7

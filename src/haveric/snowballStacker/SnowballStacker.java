@@ -4,9 +4,7 @@ package haveric.snowballStacker;
 
 import haveric.snowballStacker.blockLogger.BlockLogger;
 import haveric.snowballStacker.guard.Guard;
-import haveric.snowballStacker.mcstats.Metrics;
 
-import java.io.IOException;
 import java.util.logging.Logger;
 
 import net.coreprotect.CoreProtect;
@@ -26,8 +24,6 @@ public class SnowballStacker extends JavaPlugin {
     public Logger log;
 
     private Commands commands;
-
-    private Metrics metrics;
 
     @Override
     public void onEnable() {
@@ -51,8 +47,6 @@ public class SnowballStacker extends JavaPlugin {
         Config.setup();
 
         getCommand(commands.getMain()).setExecutor(commands);
-
-        setupMetrics();
     }
 
     @Override
@@ -95,16 +89,6 @@ public class SnowballStacker extends JavaPlugin {
         } else {
             Consumer logBlockConsumer = ((LogBlock) logBlock).getConsumer();
             BlockLogger.setLogBlockConsumer(logBlockConsumer);
-        }
-    }
-
-    private void setupMetrics() {
-        try {
-            metrics = new Metrics(this);
-
-            metrics.start();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }
