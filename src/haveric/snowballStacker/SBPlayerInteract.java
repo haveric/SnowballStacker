@@ -6,7 +6,6 @@ import haveric.snowballStacker.guard.Guard;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
@@ -34,11 +33,12 @@ public class SBPlayerInteract implements Listener {
             Block block = world.getBlockAt(location);
             Material type = block.getType();
 
+            double temperature = block.getTemperature();
             boolean canPlace = true;
 
             if (Config.isOnlySnowBiomes()) {
-                Biome biome = block.getBiome();
-                if (biome == Biome.FROZEN_OCEAN || biome == Biome.FROZEN_RIVER || biome == Biome.ICE_MOUNTAINS || biome == Biome.ICE_PLAINS || biome == Biome.TAIGA || biome == Biome.TAIGA_HILLS) {
+                // Arbitrary value based on snow biome temperatures: http://minecraft.gamepedia.com/Biome#Snow-covered_biomes
+                if (temperature < 0.35) {
                     canPlace = true;
                 } else {
                     canPlace = false;
@@ -152,7 +152,6 @@ public class SBPlayerInteract implements Listener {
             case LAVA:
             case LEAVES:
             case LEVER:
-            case LOCKED_CHEST:
             case LONG_GRASS:
             case NETHER_BRICK_STAIRS:
             case NETHER_FENCE:
