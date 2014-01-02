@@ -2,6 +2,9 @@
 #### Allows you to throw snowballs and create piles of snow or turn water into ice.
 
 ### Changelog:
+#### Version 1.0.6 (1/1/2014)
+* Changed biome testing to a temperature check.
+* Removed Locked_Chest
 
 #### Version 1.0.5 (8/20/2013)
 * Added carpet to list of blocks that don't support snow
