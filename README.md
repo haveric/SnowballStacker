@@ -2,6 +2,10 @@
 #### Allows you to throw snowballs and create piles of snow or turn water into ice.
 
 ### Changelog:
+
+#### Version 1.0.7
+* Support for all protection and block logging plugins.
+
 #### Version 1.0.6 (1/1/2014)
 * Changed biome testing to a temperature check.
 * Removed Locked_Chest

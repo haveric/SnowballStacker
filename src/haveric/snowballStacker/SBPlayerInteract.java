@@ -1,8 +1,5 @@
 package haveric.snowballStacker;
 
-import haveric.snowballStacker.blockLogger.BlockLogger;
-import haveric.snowballStacker.guard.Guard;
-
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -15,12 +12,17 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 
 
 public class SBPlayerInteract implements Listener {
 
-    public SBPlayerInteract() { }
+    private SnowballStacker plugin;
+
+    public SBPlayerInteract(SnowballStacker ss) {
+        plugin = ss;
+    }
 
     @EventHandler
     public void onProjectileHitEvent(ProjectileHitEvent event) {
@@ -50,7 +52,6 @@ public class SBPlayerInteract implements Listener {
             Player player = null;
             if (canPlace && livingEntity instanceof Player) {
                 player = (Player) livingEntity;
-                canPlace = Guard.canPlace(player, location);
             }
 
             if (canPlace) {
@@ -75,36 +76,52 @@ public class SBPlayerInteract implements Listener {
         if (type == Material.AIR && (downType == Material.AIR || downType == Material.SNOW)) {
             addSnowToBlock(player, downBlock);
         } else {
-            BlockState oldState = b.getState();
 
             int data = b.getData();
+            int newData = 0;
+            Material newMat = Material.SNOW;
             if (type == Material.AIR && canHoldSnow(downBlock)) {
-                b.setTypeIdAndData(Material.SNOW.getId(), (byte) 0, true);
+                //newData = 0;
+                //b.setTypeIdAndData(Material.SNOW.getId(), (byte) 0, true);
             } else if (type == Material.SNOW) {
                 if (data >= 6) {
-                    b.setType(Material.SNOW_BLOCK);
+                    newMat = Material.SNOW_BLOCK;
+                    //newData = 0;
+                    //b.setType(Material.SNOW_BLOCK);
                 } else {
-                    b.setTypeIdAndData(Material.SNOW.getId(), (byte) (data + 1), true);
+                    newData = data + 1;
+                    //b.setTypeIdAndData(Material.SNOW.getId(), (byte) (data + 1), true);
                 }
             }
-
-            BlockState newState = b.getState();
-            if (player != null) {
-                BlockLogger.logBlock(player.getName(), oldState, newState);
+            if (player == null) {
+                b.setTypeIdAndData(newMat.getId(), (byte) newData, true);
+            } else {
+                replaceBlock(player, b, newMat, newData);
             }
         }
     }
 
     private void freezeWater(Player player, Block b) {
         if (b.getRelative(BlockFace.UP).getType() != Material.STATIONARY_WATER) {
-            BlockState oldState = b.getState();
-
-            b.setType(Material.ICE);
-
-            BlockState newState = b.getState();
-            if (player != null) {
-                BlockLogger.logBlock(player.getName(), oldState, newState);
+            if (player == null) {
+                b.setType(Material.ICE);
+            } else {
+                replaceBlock(player, b, Material.ICE, 0);
             }
+        }
+    }
+
+    private void replaceBlock(Player player, Block block, Material mat, int data) {
+        BlockState state = block.getState();
+
+        block.setType(mat);
+        block.setData((byte) data);
+
+        BlockPlaceEvent placeEvent = new BlockPlaceEvent(state.getBlock(), state, block, player.getItemInHand(), player, true);
+        plugin.getServer().getPluginManager().callEvent(placeEvent);
+
+        if (placeEvent.isCancelled()) {
+            state.update(true);
         }
     }
 
