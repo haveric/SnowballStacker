@@ -3,6 +3,9 @@
 
 ### Changelog:
 
+#### Coming Soon:
+* Fixed StackOverflow when throwing a snowball into the void.
+
 #### Version 1.0.7 (1/19/2014)
 * Support for all protection and block logging plugins.
 

@@ -70,31 +70,33 @@ public class SBPlayerInteract implements Listener {
 
     private void addSnowToBlock(Player player, Block b) {
         Block downBlock = b.getRelative(BlockFace.DOWN);
-        Material downType = downBlock.getType();
-        Material type = b.getType();
+        if (b.getY() > 0) {
+            Material downType = downBlock.getType();
+            Material type = b.getType();
 
-        if (type == Material.AIR && (downType == Material.AIR || downType == Material.SNOW)) {
-            addSnowToBlock(player, downBlock);
-        } else {
+            if (type == Material.AIR && (downType == Material.AIR || downType == Material.SNOW)) {
+                addSnowToBlock(player, downBlock);
+            } else {
 
-            int data = b.getData();
-            int newData = -1;
-            Material newMat = Material.SNOW;
-            if (type == Material.AIR && canHoldSnow(downBlock)) {
-                newData = 0;
-            } else if (type == Material.SNOW) {
-                if (data >= 6) {
-                    newMat = Material.SNOW_BLOCK;
+                int data = b.getData();
+                int newData = -1;
+                Material newMat = Material.SNOW;
+                if (type == Material.AIR && canHoldSnow(downBlock)) {
                     newData = 0;
-                } else {
-                    newData = data + 1;
+                } else if (type == Material.SNOW) {
+                    if (data >= 6) {
+                        newMat = Material.SNOW_BLOCK;
+                        newData = 0;
+                    } else {
+                        newData = data + 1;
+                    }
                 }
-            }
-            if (newData > -1) {
-                if (player == null) {
-                    b.setTypeIdAndData(newMat.getId(), (byte) newData, true);
-                } else {
-                    replaceBlock(player, b, newMat, newData);
+                if (newData > -1) {
+                    if (player == null) {
+                        b.setTypeIdAndData(newMat.getId(), (byte) newData, true);
+                    } else {
+                        replaceBlock(player, b, newMat, newData);
+                    }
                 }
             }
         }
