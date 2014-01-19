@@ -78,25 +78,24 @@ public class SBPlayerInteract implements Listener {
         } else {
 
             int data = b.getData();
-            int newData = 0;
+            int newData = -1;
             Material newMat = Material.SNOW;
             if (type == Material.AIR && canHoldSnow(downBlock)) {
-                //newData = 0;
-                //b.setTypeIdAndData(Material.SNOW.getId(), (byte) 0, true);
+                newData = 0;
             } else if (type == Material.SNOW) {
                 if (data >= 6) {
                     newMat = Material.SNOW_BLOCK;
-                    //newData = 0;
-                    //b.setType(Material.SNOW_BLOCK);
+                    newData = 0;
                 } else {
                     newData = data + 1;
-                    //b.setTypeIdAndData(Material.SNOW.getId(), (byte) (data + 1), true);
                 }
             }
-            if (player == null) {
-                b.setTypeIdAndData(newMat.getId(), (byte) newData, true);
-            } else {
-                replaceBlock(player, b, newMat, newData);
+            if (newData > -1) {
+                if (player == null) {
+                    b.setTypeIdAndData(newMat.getId(), (byte) newData, true);
+                } else {
+                    replaceBlock(player, b, newMat, newData);
+                }
             }
         }
     }
