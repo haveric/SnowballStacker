@@ -3,7 +3,7 @@
 
 ### Changelog:
 
-#### Version 1.0.7
+#### Version 1.0.7 (1/19/2014)
 * Support for all protection and block logging plugins.
 
 #### Version 1.0.6 (1/1/2014)
