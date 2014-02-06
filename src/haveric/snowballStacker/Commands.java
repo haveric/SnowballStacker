@@ -37,12 +37,10 @@ public class Commands implements CommandExecutor {
 
         boolean hasAdminPerm = false;
         if (sender instanceof Player) {
-            Player player = (Player) sender;
-            hasAdminPerm = Perms.hasAdmin(player);
+            hasAdminPerm = Perms.hasAdmin((Player) sender);
         }
 
         if (commandLabel.equalsIgnoreCase(cmdMain) || commandLabel.equalsIgnoreCase(cmdMainAlt)) {
-
             if (args.length == 0 || (args.length == 1 && args[0].equalsIgnoreCase(cmdHelp))) {
                 sender.sendMessage(title + "github.com/haveric/SnowballStacker - v" + plugin.getDescription().getVersion());
                 String freeze;

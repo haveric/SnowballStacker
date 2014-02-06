@@ -69,15 +69,14 @@ public class SBPlayerInteract implements Listener {
     }
 
     private void addSnowToBlock(Player player, Block b) {
-        Block downBlock = b.getRelative(BlockFace.DOWN);
         if (b.getY() > 0) {
+            Block downBlock = b.getRelative(BlockFace.DOWN);
             Material downType = downBlock.getType();
             Material type = b.getType();
 
             if (type == Material.AIR && (downType == Material.AIR || downType == Material.SNOW)) {
                 addSnowToBlock(player, downBlock);
             } else {
-
                 int data = b.getData();
                 int newData = -1;
                 Material newMat = Material.SNOW;
