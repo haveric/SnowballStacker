@@ -5,6 +5,7 @@
 
 #### Coming Soon:
 * Fixed StackOverflow when throwing a snowball into the void.
+* Update to new ProjectileSource for getting the shooter (Requires CB 2999+)
 
 #### Version 1.0.7 (1/19/2014)
 * Support for all protection and block logging plugins.

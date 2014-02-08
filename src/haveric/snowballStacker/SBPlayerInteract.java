@@ -7,13 +7,13 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.projectiles.ProjectileSource;
 
 
 public class SBPlayerInteract implements Listener {
@@ -46,12 +46,11 @@ public class SBPlayerInteract implements Listener {
                     canPlace = false;
                 }
             }
-
-            LivingEntity livingEntity = snowball.getShooter();
+            ProjectileSource projectileSource = snowball.getShooter();
 
             Player player = null;
-            if (canPlace && livingEntity instanceof Player) {
-                player = (Player) livingEntity;
+            if (canPlace && projectileSource instanceof Player) {
+                player = (Player) projectileSource;
             }
 
             if (canPlace) {
