@@ -25,7 +25,7 @@ public class Config {
      */
     public static void init(SnowballStacker ss) {
         plugin = ss;
-        configFile = new File(plugin.getDataFolder() + "/config.yml");
+        configFile = new File(plugin.getDataFolder() + File.separator + "config.yml");
         config = YamlConfiguration.loadConfiguration(configFile);
     }
 
