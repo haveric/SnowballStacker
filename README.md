@@ -3,6 +3,9 @@
 
 ### Changelog:
 
+#### Coming Soon:
+* Updated Metrics to work with updated getOnlinePlayers
+
 #### Version 1.0.8 (2/8/2014)
 * Fixed StackOverflow when throwing a snowball into the void.
 * Update to new ProjectileSource for getting the shooter (Requires CB 2999+)
