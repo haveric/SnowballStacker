@@ -12,12 +12,14 @@ public class Config {
 
     private static String cfgFreezeWater = "Freeze_Water";
     private static String cfgOnlySnowBiomes = "Only_Works_In_Snow_Biomes";
+    private static String cfgSnowGolemsCanStack = "Snow_Golems_Can_Stack";
     private static FileConfiguration config;
     private static File configFile;
 
     // Defaults
     private static final boolean FREEZE_WATER_DEFAULT = true;
     private static final boolean ONLY_SNOW_BIOMES_DEFAULT = true;
+    private static final boolean SNOW_GOLEMS_CAN_STACK_DEFAULT = false;
 
     /**
      * Initializes the config file
@@ -39,6 +41,9 @@ public class Config {
 
         boolean onlySnow = config.getBoolean(cfgOnlySnowBiomes, ONLY_SNOW_BIOMES_DEFAULT);
         config.set(cfgOnlySnowBiomes, onlySnow);
+
+        boolean snowGolemsCanStack = config.getBoolean(cfgSnowGolemsCanStack, SNOW_GOLEMS_CAN_STACK_DEFAULT);
+        config.set(cfgSnowGolemsCanStack, snowGolemsCanStack);
 
         saveConfig();
     }
@@ -73,6 +78,24 @@ public class Config {
     }
 
     /**
+     * Gets whether snow golems are allowed to stack snow
+     * @return true if snow golems can stack snow<br>
+     *         false if snow golems are not allowed to stack snow
+     */
+    public static boolean canSnowGolemsStack() {
+        return config.getBoolean(cfgSnowGolemsCanStack);
+    }
+
+    /**
+     * Changes whether snow golems can stack snow
+     * @param canStack true to enable snow golem stacking, false to disable it
+     */
+    public static void setSnowGolemCanStack(boolean canStack) {
+        config.set(cfgSnowGolemsCanStack, canStack);
+        saveConfig();
+    }
+
+    /**
      * Gets whether you can stack snow only in snow biomes or all
      * @return true if snow stacking only works in snow biomes<br>
      *         false if snow stacking works in all biomes
@@ -81,6 +104,10 @@ public class Config {
         return config.getBoolean(cfgOnlySnowBiomes);
     }
 
+    /**
+     * Sets whether stacking snow works only in snow biomes or anywhere
+     * @param newOnlySnowBiomes true limits stacking to snow biomes, false allows stacking everywhere
+     */
     public static void setOnlySnowBiomes(boolean newOnlySnowBiomes) {
         config.set(cfgOnlySnowBiomes, newOnlySnowBiomes);
         saveConfig();

@@ -5,6 +5,8 @@
 
 #### Coming Soon:
 * Updated Metrics to work with updated getOnlinePlayers
+* Added config to control snow golems stacking snow from snowballs
+* Added command 'setgolem' to control golem stacking in game
 
 #### Version 1.0.8 (2/8/2014)
 * Fixed StackOverflow when throwing a snowball into the void.

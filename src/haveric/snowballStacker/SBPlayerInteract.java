@@ -9,6 +9,7 @@ import org.bukkit.block.BlockState;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
+import org.bukkit.entity.Snowman;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -47,6 +48,10 @@ public class SBPlayerInteract implements Listener {
                 }
             }
             ProjectileSource projectileSource = snowball.getShooter();
+
+            if (canPlace && projectileSource instanceof Snowman) {
+
+            }
 
             Player player = null;
             if (canPlace && projectileSource instanceof Player) {

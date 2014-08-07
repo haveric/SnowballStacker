@@ -16,6 +16,7 @@ public class Commands implements CommandExecutor {
     private static String cmdHelp = "help";
     private static String cmdSetFreeze = "setfreeze";
     private static String cmdSetSnowBiome = "setsnow";
+    private static String cmdSetGolemStack = "setgolem";
     private static String cmdPerms = "perms";
     private static String cmdPermsAlt = "perm";
 
@@ -62,6 +63,7 @@ public class Commands implements CommandExecutor {
                 if (op || hasAdminPerm) {
                     sender.sendMessage("/" + cmdMain + " " + cmdSetFreeze + " [true/false] - " + msgColor + "Turn freezing on/off");
                     sender.sendMessage("/" + cmdMain + " " + cmdSetSnowBiome + " [true/false] - " + msgColor + "True=Only snow biomes, False=All Biomes");
+                    sender.sendMessage("/" + cmdMain + " " + cmdSetGolemStack + " [true/false] - " + msgColor + "Whether snow golems can stack snow");
                 }
             } else if (args.length == 2 && args[0].equalsIgnoreCase(cmdSetFreeze)) {
                 if (op || hasAdminPerm) {
@@ -81,6 +83,16 @@ public class Commands implements CommandExecutor {
                     } else if (args[1].equalsIgnoreCase("false")) {
                         Config.setOnlySnowBiomes(false);
                         sender.sendMessage(title + "Stacking enabled for " + highlightColor + "all biomes.");
+                    }
+                }
+            } else if (args.length == 2 && args[0].equalsIgnoreCase(cmdSetGolemStack)) {
+                if (op || hasAdminPerm) {
+                    if (args[1].equalsIgnoreCase("true")) {
+                        Config.setSnowGolemCanStack(true);
+                        sender.sendMessage(title + "Snow golem stacking " + highlightColor + "enabled.");
+                    } else if (args[1].equalsIgnoreCase("false")) {
+                        Config.setSnowGolemCanStack(false);
+                        sender.sendMessage(title + "Snow golem stacking " + highlightColor + "disabled.");
                     }
                 }
             } else if (args.length == 1 && (args[0].equalsIgnoreCase(cmdPerms) || args[0].equalsIgnoreCase(cmdPermsAlt))) {
