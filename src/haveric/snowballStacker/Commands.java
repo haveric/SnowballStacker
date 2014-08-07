@@ -20,6 +20,9 @@ public class Commands implements CommandExecutor {
     private static String cmdPerms = "perms";
     private static String cmdPermsAlt = "perm";
 
+    private static ChatColor defColor = ChatColor.WHITE;
+    private static ChatColor highlightColor = ChatColor.GOLD;
+
     public Commands(SnowballStacker ss) {
         plugin = ss;
     }
@@ -27,7 +30,6 @@ public class Commands implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
         ChatColor msgColor = ChatColor.DARK_AQUA;
-        ChatColor highlightColor = ChatColor.YELLOW;
 
         String title = msgColor + "[" + ChatColor.GRAY + plugin.getDescription().getName() + msgColor + "] ";
 
@@ -61,9 +63,9 @@ public class Commands implements CommandExecutor {
                 sender.sendMessage("Stacking enabled for: " + highlightColor + onlySnow);
 
                 if (op || hasAdminPerm) {
-                    sender.sendMessage("/" + cmdMain + " " + cmdSetFreeze + " [true/false] - " + msgColor + "Turn freezing on/off");
-                    sender.sendMessage("/" + cmdMain + " " + cmdSetSnowBiome + " [true/false] - " + msgColor + "True=Only snow biomes, False=All Biomes");
-                    sender.sendMessage("/" + cmdMain + " " + cmdSetGolemStack + " [true/false] - " + msgColor + "Whether snow golems can stack snow");
+                    sender.sendMessage("/" + cmdMain + " " + cmdSetFreeze + getTFString(Config.canFreezeWater()) + " - " + msgColor + "Turn freezing on/off");
+                    sender.sendMessage("/" + cmdMain + " " + cmdSetSnowBiome + getTFString(Config.isOnlySnowBiomes()) + " - " + msgColor + "True=Only snow biomes, False=All Biomes");
+                    sender.sendMessage("/" + cmdMain + " " + cmdSetGolemStack + getTFString(Config.canSnowGolemsStack()) + " - " + msgColor + "Whether snow golems can stack snow");
                 }
             } else if (args.length == 2 && args[0].equalsIgnoreCase(cmdSetFreeze)) {
                 if (op || hasAdminPerm) {
@@ -107,6 +109,18 @@ public class Commands implements CommandExecutor {
             }
         }
         return false;
+    }
+
+    public static String getTFString(boolean bool) {
+        String msg = "";
+
+        if (bool) {
+            msg = " <" + highlightColor + "true" + defColor + ",false>";
+        } else {
+            msg = " <true," + highlightColor + "false" + defColor + ">";
+        }
+
+        return msg;
     }
 
     public String getMain() {
