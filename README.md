@@ -3,7 +3,7 @@
 
 ### Changelog:
 
-#### Coming Soon:
+#### Version 1.0.9 (8/13/2014)
 * Updated Metrics to work with updated getOnlinePlayers
 * Added config to control snow golems stacking snow from snowballs
 * Added command 'setgolem' to control golem stacking in game
