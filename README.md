@@ -3,6 +3,9 @@
 
 ### Changelog:
 
+#### Coming Soon
+* Updated Metrics to handle old getOnlinePlayers (provides backward support for old versions of CraftBukkit)
+
 #### Version 1.0.9 (8/13/2014)
 * Updated Metrics to work with updated getOnlinePlayers
 * Added config to control snow golems stacking snow from snowballs
