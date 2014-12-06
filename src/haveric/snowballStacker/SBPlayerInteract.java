@@ -84,7 +84,7 @@ public class SBPlayerInteract implements Listener {
                 int data = b.getData();
                 int newData = -1;
                 Material newMat = Material.SNOW;
-                if (type == Material.AIR && canHoldSnow(downBlock)) {
+                if (type == Material.AIR && canHoldSnow(downBlock.getType())) {
                     newData = 0;
                 } else if (type == Material.SNOW) {
                     if (data >= 6) {
@@ -129,9 +129,10 @@ public class SBPlayerInteract implements Listener {
         }
     }
 
-    private boolean canHoldSnow(Block b) {
+    private boolean canHoldSnow(Material mat) {
+
         boolean holdsSnow = true;
-        switch(b.getType()) {
+        switch(mat) {
             case ACTIVATOR_RAIL:
             case AIR:
             case ANVIL:
@@ -156,6 +157,7 @@ public class SBPlayerInteract implements Listener {
             case DRAGON_EGG:
             case DIODE_BLOCK_OFF:
             case DIODE_BLOCK_ON:
+            case WOOD_DOOR:
             case ENCHANTMENT_TABLE:
             case ENDER_CHEST:
             case FENCE:
@@ -166,6 +168,7 @@ public class SBPlayerInteract implements Listener {
             case GLOWSTONE:
             case GOLD_PLATE:
             case ICE:
+            case IRON_DOOR:
             case IRON_FENCE:
             case IRON_PLATE:
             case JUNGLE_WOOD_STAIRS:
@@ -225,9 +228,42 @@ public class SBPlayerInteract implements Listener {
             case YELLOW_FLOWER:
                 holdsSnow = false;
                 break;
-        default:
-            break;
+            default:
+                break;
         }
+
+        try {
+            switch(mat) {
+                case BANNER:
+                case IRON_TRAPDOOR:
+
+                case ACACIA_STAIRS:
+                case BIRCH_WOOD_STAIRS:
+                case DARK_OAK_STAIRS:
+                case JUNGLE_WOOD_STAIRS:
+                case SPRUCE_WOOD_STAIRS:
+
+                case ACACIA_FENCE:
+                case BIRCH_FENCE:
+                case DARK_OAK_FENCE:
+                case JUNGLE_FENCE:
+                case SPRUCE_FENCE:
+
+                case ACACIA_FENCE_GATE:
+                case BIRCH_FENCE_GATE:
+                case DARK_OAK_FENCE_GATE:
+                case JUNGLE_FENCE_GATE:
+                case SPRUCE_FENCE_GATE:
+                    holdsSnow = false;
+                    break;
+                default:
+                    break;
+            }
+        } catch (NoSuchFieldError e) {
+            // Not running 1.8
+        }
+
+
         return holdsSnow;
     }
 }
