@@ -238,10 +238,7 @@ public class SBPlayerInteract implements Listener {
                 case IRON_TRAPDOOR:
 
                 case ACACIA_STAIRS:
-                case BIRCH_WOOD_STAIRS:
                 case DARK_OAK_STAIRS:
-                case JUNGLE_WOOD_STAIRS:
-                case SPRUCE_WOOD_STAIRS:
 
                 case ACACIA_FENCE:
                 case BIRCH_FENCE:
