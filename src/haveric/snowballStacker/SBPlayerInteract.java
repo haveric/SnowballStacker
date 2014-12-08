@@ -234,7 +234,7 @@ public class SBPlayerInteract implements Listener {
 
         try {
             switch(mat) {
-                case BANNER:
+                case STANDING_BANNER:
                 case IRON_TRAPDOOR:
 
                 case ACACIA_STAIRS:
