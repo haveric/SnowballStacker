@@ -130,8 +130,8 @@ public class SBPlayerInteract implements Listener {
     }
 
     private boolean canHoldSnow(Material mat) {
-
         boolean holdsSnow = true;
+
         switch(mat) {
             case ACTIVATOR_RAIL:
             case AIR:
@@ -157,9 +157,10 @@ public class SBPlayerInteract implements Listener {
             case DRAGON_EGG:
             case DIODE_BLOCK_OFF:
             case DIODE_BLOCK_ON:
-            case WOOD_DOOR:
+            case DOUBLE_PLANT:
             case ENCHANTMENT_TABLE:
             case ENDER_CHEST:
+            case ENDER_PORTAL_FRAME:
             case FENCE:
             case FENCE_GATE:
             case FIRE:
@@ -167,8 +168,9 @@ public class SBPlayerInteract implements Listener {
             case GLASS:
             case GLOWSTONE:
             case GOLD_PLATE:
+            case HOPPER:
             case ICE:
-            case IRON_DOOR:
+            case IRON_DOOR_BLOCK:
             case IRON_FENCE:
             case IRON_PLATE:
             case JUNGLE_WOOD_STAIRS:
@@ -181,6 +183,7 @@ public class SBPlayerInteract implements Listener {
             case NETHER_FENCE:
             case NETHER_STALK:
             case NETHER_WARTS:
+            case PACKED_ICE:
             case PISTON_BASE:
             case PISTON_EXTENSION:
             case PISTON_MOVING_PIECE:
@@ -195,6 +198,7 @@ public class SBPlayerInteract implements Listener {
             case REDSTONE_TORCH_ON:
             case REDSTONE_WIRE:
             case RED_MUSHROOM:
+            case RED_ROSE:
             case SANDSTONE_STAIRS:
             case SAPLING:
             case SIGN:
@@ -206,6 +210,7 @@ public class SBPlayerInteract implements Listener {
             case STATIONARY_LAVA:
             case STATIONARY_WATER:
             case STEP:
+            case STAINED_GLASS:
             case STONE_BUTTON:
             case STONE_PLATE:
             case SUGAR_CANE_BLOCK:
@@ -221,6 +226,7 @@ public class SBPlayerInteract implements Listener {
             case WATER_LILY:
             case WEB:
             case WHEAT:
+            case WOODEN_DOOR:
             case WOOD_BUTTON:
             case WOOD_PLATE:
             case WOOD_STAIRS:
@@ -234,8 +240,10 @@ public class SBPlayerInteract implements Listener {
 
         try {
             switch(mat) {
+                case ARMOR_STAND:
                 case STANDING_BANNER:
                 case IRON_TRAPDOOR:
+                case SLIME_BLOCK:
 
                 case ACACIA_STAIRS:
                 case DARK_OAK_STAIRS:
@@ -252,6 +260,12 @@ public class SBPlayerInteract implements Listener {
                 case DARK_OAK_FENCE_GATE:
                 case JUNGLE_FENCE_GATE:
                 case SPRUCE_FENCE_GATE:
+
+                case ACACIA_DOOR:
+                case BIRCH_DOOR:
+                case DARK_OAK_DOOR:
+                case JUNGLE_DOOR:
+                case SPRUCE_DOOR:
                     holdsSnow = false;
                     break;
                 default:
