@@ -3,7 +3,7 @@
 
 ### Changelog:
 
-#### Coming Soon
+#### Version 1.1 (12/11/2014)
 * Updated Metrics to handle old getOnlinePlayers (provides backward support for old versions of CraftBukkit)
 * Add 1.8 items + doors to list of blocks that don't support snow
 
