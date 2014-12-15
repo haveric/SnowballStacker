@@ -49,13 +49,13 @@ public class SBPlayerInteract implements Listener {
             }
             ProjectileSource projectileSource = snowball.getShooter();
 
-            if (canPlace && projectileSource instanceof Snowman) {
-
-            }
-
             Player player = null;
-            if (canPlace && projectileSource instanceof Player) {
-                player = (Player) projectileSource;
+            if (canPlace) {
+                if (projectileSource instanceof Player) {
+                    player = (Player) projectileSource;
+                } else if (projectileSource instanceof Snowman) {
+                    canPlace = Config.canSnowGolemsStack();
+                }
             }
 
             if (canPlace) {
