@@ -1,0 +1,30 @@
+name: SnowballStacker
+main: haveric.snowballStacker.SnowballStacker
+version: 1.2.0
+author: haveric
+website: https://dev.bukkit.org/projects/snowballstacker
+dev-url: https://dev.bukkit.org/projects/snowballstacker
+api-version: 1.14
+description: >
+             Snow piles up when thrown and turns water into ice
+commands:
+    snowballstacker:
+        aliases: [ss]
+        description: Informs the user about the current settings
+        usage:
+permissions:
+    snowballstacker.*:
+        description: Gives access to all SnowballStacker Commands
+        children:
+            snowballstacker.admin: true
+            snowballstacker.stack: true
+            snowballstacker.freeze: true
+    snowballstacker.stack:
+        description: Allows stacking of snow by throwing snowballs.
+        default: false
+    snowballstacker.freeze:
+        description: Allows freezing water by throwing snowballs.
+        default: false
+    snowballstacker.admin:
+        description: Allows use of admin commands.
+        default: false

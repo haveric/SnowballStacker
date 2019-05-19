@@ -3,7 +3,9 @@
 
 ### Changelog:
 
-#### Coming Soon
+#### Version 1.2.0 (5/19/2019)
+* Updated to 1.14
+* Removed Metrics
 * Fixed snowball stacking for golems
 
 #### Version 1.1 (12/11/2014)
