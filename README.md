@@ -3,6 +3,10 @@
 
 ### Changelog:
 
+#### Version 1.2.1 (6/9/2019)
+* Beacons and Slime blocks can hold snow now
+* Support for snow on top half of slabs/stairs as well as non-extended pistons
+
 #### Version 1.2.0 (5/19/2019)
 * Updated to 1.14
 * Removed Metrics

@@ -83,7 +83,7 @@ public class SBPlayerInteract implements Listener {
             } else {
                 int newLayers = -1;
                 Material newMat = Material.SNOW;
-                if (type == Material.AIR && SSUtil.canHoldSnow(downBlock.getType())) {
+                if (type == Material.AIR && SSUtil.canHoldSnow(downBlock)) {
                     newLayers = 1;
                 } else if (type == Material.SNOW) {
                     Snow snowBlock = (Snow) block.getBlockData();

@@ -1,23 +1,52 @@
 package haveric.snowballStacker;
 
 import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.type.Piston;
+import org.bukkit.block.data.type.Slab;
+import org.bukkit.block.data.type.Stairs;
 
 public class SSUtil {
-    public static boolean canHoldSnow(Material mat) {
+
+    public static boolean canHoldSnow(Block block) {
+        boolean holdsSnow = true;
+
+        BlockData blockData = block.getBlockData();
+
+        if (blockData instanceof Stairs) {
+            Stairs stairsData = (Stairs) blockData;
+            if (stairsData.getHalf() == Stairs.Half.BOTTOM) {
+                holdsSnow = false;
+            }
+        } else if (blockData instanceof Slab) {
+            Slab slabData = (Slab) blockData;
+            if (slabData.getType() == Slab.Type.BOTTOM) {
+                holdsSnow = false;
+            }
+        } else if (blockData instanceof Piston) {
+            Piston pistonData = (Piston) blockData;
+            if (pistonData.isExtended()) {
+                holdsSnow = false;
+            }
+        } else {
+            holdsSnow = canHoldSnow(block.getType());
+        }
+
+        return holdsSnow;
+    }
+
+    private static boolean canHoldSnow(Material mat) {
         boolean holdsSnow = true;
 
         switch(mat) {
             case ACTIVATOR_RAIL:
             case AIR:
             case ANVIL:
-            case BEACON:
             case BREWING_STAND:
-            case BRICK_STAIRS:
             case BROWN_MUSHROOM:
-            case CACTUS:
             case CAULDRON:
             case CHEST:
-            case COBBLESTONE_STAIRS:
             case DAYLIGHT_DETECTOR:
             case DEAD_BUSH:
             case DETECTOR_RAIL:
@@ -30,14 +59,11 @@ public class SSUtil {
             case LADDER:
             case LAVA:
             case LEVER:
-            case NETHER_BRICK_STAIRS:
             case PACKED_ICE:
             case POWERED_RAIL:
             case PUMPKIN_STEM:
-            case QUARTZ_STAIRS:
             case REDSTONE_WIRE:
             case RED_MUSHROOM:
-            case SANDSTONE_STAIRS:
             case SNOW:
             case STONE_BUTTON:
             case TORCH:
@@ -46,16 +72,10 @@ public class SSUtil {
             case TRIPWIRE_HOOK:
             case VINE:
             case WATER:
-            case WHEAT:
 
                 // 1.8
             case ARMOR_STAND:
             case IRON_TRAPDOOR:
-            case SLIME_BLOCK:
-
-            case ACACIA_STAIRS:
-            case DARK_OAK_STAIRS:
-            case RED_SANDSTONE_STAIRS:
 
             case ACACIA_FENCE:
             case BIRCH_FENCE:
@@ -93,30 +113,6 @@ public class SSUtil {
             case WHITE_BED:
             case YELLOW_BED:
 
-            case BIRCH_STAIRS:
-            case JUNGLE_STAIRS:
-            case STONE_STAIRS:
-            case SPRUCE_STAIRS:
-            case OAK_STAIRS:
-            case STONE_BRICK_STAIRS:
-            case ANDESITE_STAIRS:
-            case SMOOTH_QUARTZ_STAIRS:
-            case SMOOTH_RED_SANDSTONE_STAIRS:
-            case SMOOTH_SANDSTONE_STAIRS:
-            case DARK_PRISMARINE_STAIRS:
-            case DIORITE_STAIRS:
-            case END_STONE_BRICK_STAIRS:
-            case GRANITE_STAIRS:
-            case MOSSY_COBBLESTONE_STAIRS:
-            case MOSSY_STONE_BRICK_STAIRS:
-            case POLISHED_ANDESITE_STAIRS:
-            case POLISHED_DIORITE_STAIRS:
-            case POLISHED_GRANITE_STAIRS:
-            case PRISMARINE_BRICK_STAIRS:
-            case PRISMARINE_STAIRS:
-            case PURPUR_STAIRS:
-            case RED_NETHER_BRICK_STAIRS:
-
             case CAKE:
 
             case CYAN_CARPET:
@@ -151,17 +147,22 @@ public class SSUtil {
             case SANDSTONE_WALL:
             case STONE_BRICK_WALL:
 
+            case CACTUS:
             case CARROTS:
             case POTATOES:
             case BEETROOTS:
             case NETHER_WART:
+            case SUGAR_CANE:
             case SWEET_BERRIES:
             case SWEET_BERRY_BUSH:
+            case WHEAT:
 
             case REPEATER:
 
             case ENCHANTING_TABLE:
             case END_PORTAL_FRAME:
+            case END_PORTAL:
+            case NETHER_PORTAL:
 
             case OAK_FENCE:
             case NETHER_BRICK_FENCE:
@@ -190,10 +191,8 @@ public class SSUtil {
             case LARGE_FERN:
             case TALL_SEAGRASS:
 
-            case PISTON:
             case PISTON_HEAD:
             case MOVING_PISTON:
-            case STICKY_PISTON:
             case RAIL:
             case COMPARATOR:
             case REDSTONE_TORCH:
@@ -251,42 +250,6 @@ public class SSUtil {
             case PLAYER_WALL_HEAD:
             case ZOMBIE_WALL_HEAD:
 
-            case SANDSTONE_SLAB:
-            case SMOOTH_QUARTZ_SLAB:
-            case ACACIA_SLAB:
-            case SMOOTH_RED_SANDSTONE_SLAB:
-            case ANDESITE_SLAB:
-            case SMOOTH_SANDSTONE_SLAB:
-            case SMOOTH_STONE_SLAB:
-            case BIRCH_SLAB:
-            case SPRUCE_SLAB:
-            case STONE_BRICK_SLAB:
-            case BRICK_SLAB:
-            case STONE_SLAB:
-            case COBBLESTONE_SLAB:
-            case CUT_RED_SANDSTONE_SLAB:
-            case CUT_SANDSTONE_SLAB:
-            case DARK_OAK_SLAB:
-            case DARK_PRISMARINE_SLAB:
-            case DIORITE_SLAB:
-            case END_STONE_BRICK_SLAB:
-            case GRANITE_SLAB:
-            case JUNGLE_SLAB:
-            case MOSSY_COBBLESTONE_SLAB:
-            case MOSSY_STONE_BRICK_SLAB:
-            case NETHER_BRICK_SLAB:
-            case OAK_SLAB:
-            case PETRIFIED_OAK_SLAB:
-            case POLISHED_ANDESITE_SLAB:
-            case POLISHED_DIORITE_SLAB:
-            case POLISHED_GRANITE_SLAB:
-            case PRISMARINE_BRICK_SLAB:
-            case PRISMARINE_SLAB:
-            case PURPUR_SLAB:
-            case QUARTZ_SLAB:
-            case RED_NETHER_BRICK_SLAB:
-            case RED_SANDSTONE_SLAB:
-
             case BLACK_STAINED_GLASS_PANE:
             case BLUE_STAINED_GLASS_PANE:
             case PINK_STAINED_GLASS_PANE:
@@ -304,8 +267,6 @@ public class SSUtil {
             case RED_STAINED_GLASS_PANE:
             case WHITE_STAINED_GLASS_PANE:
             case YELLOW_STAINED_GLASS_PANE:
-
-            case SUGAR_CANE:
 
             case ACACIA_TRAPDOOR:
             case BIRCH_TRAPDOOR:
