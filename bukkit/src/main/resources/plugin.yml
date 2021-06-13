@@ -1,10 +1,10 @@
 name: SnowballStacker
 main: haveric.snowballStacker.SnowballStacker
-version: 1.2.1
+version: 1.3.0
 author: haveric
 website: https://dev.bukkit.org/projects/snowballstacker
 dev-url: https://dev.bukkit.org/projects/snowballstacker
-api-version: 1.14
+api-version: 1.17
 description: >
              Snow piles up when thrown and turns water into ice
 commands:
