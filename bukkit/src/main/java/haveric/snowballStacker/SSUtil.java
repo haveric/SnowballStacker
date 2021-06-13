@@ -3,9 +3,7 @@ package haveric.snowballStacker;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.BlockData;
-import org.bukkit.block.data.type.Piston;
-import org.bukkit.block.data.type.Slab;
-import org.bukkit.block.data.type.Stairs;
+import org.bukkit.block.data.type.*;
 
 public class SSUtil {
 
@@ -14,6 +12,7 @@ public class SSUtil {
 
         BlockData blockData = block.getBlockData();
 
+        String blockType = block.getType().toString().toUpperCase();
         if (blockData instanceof Stairs) {
             Stairs stairsData = (Stairs) blockData;
             if (stairsData.getHalf() == Stairs.Half.BOTTOM) {
@@ -29,6 +28,42 @@ public class SSUtil {
             if (pistonData.isExtended()) {
                 holdsSnow = false;
             }
+        } else if (blockData instanceof AmethystCluster) {
+            holdsSnow = false;
+        } else if (blockData instanceof Bed) {
+            holdsSnow = false;
+        } else if (blockData instanceof Campfire) {
+            holdsSnow = false;
+        } else if (blockData instanceof Candle) {
+            holdsSnow = false;
+        } else if (blockData instanceof Door) {
+            holdsSnow = false;
+        } else if (blockData instanceof Fire) {
+            holdsSnow = false;
+        } else if (blockData instanceof Gate) {
+            holdsSnow = false;
+        } else if (blockData instanceof GlassPane) {
+            holdsSnow = false;
+        } else if (blockData instanceof Sapling) {
+            holdsSnow = false;
+        } else if (blockData instanceof Sign) {
+            holdsSnow = false;
+        } else if (blockData instanceof Switch) { // buttons
+            holdsSnow = false;
+        } else if (blockData instanceof TrapDoor) {
+            holdsSnow = false;
+        } else if (blockData instanceof Wall) {
+            holdsSnow = false;
+        } else if (blockData instanceof WallSign) {
+            holdsSnow = false;
+        } else if (blockType.contains("PRESSURE_PLATE")) {
+            holdsSnow = false;
+        } else if (blockType.contains("_CARPET")) {
+            holdsSnow = false;
+        } else if (blockType.contains("POTTED_")) {
+            holdsSnow = false;
+        } else if (blockType.contains("_BANNER")) {
+            holdsSnow = false;
         } else {
             holdsSnow = canHoldSnow(block.getType());
         }
@@ -52,7 +87,6 @@ public class SSUtil {
             case DETECTOR_RAIL:
             case DRAGON_EGG:
             case ENDER_CHEST:
-            case FIRE:
             case FLOWER_POT:
             case HOPPER:
             case ICE:
@@ -65,7 +99,6 @@ public class SSUtil {
             case REDSTONE_WIRE:
             case RED_MUSHROOM:
             case SNOW:
-            case STONE_BUTTON:
             case TORCH:
             case TRAPPED_CHEST:
             case TRIPWIRE:
@@ -73,79 +106,11 @@ public class SSUtil {
             case VINE:
             case WATER:
 
-                // 1.8
+            // 1.8
             case ARMOR_STAND:
-            case IRON_TRAPDOOR:
 
-            case ACACIA_FENCE:
-            case BIRCH_FENCE:
-            case DARK_OAK_FENCE:
-            case JUNGLE_FENCE:
-            case SPRUCE_FENCE:
-
-            case ACACIA_FENCE_GATE:
-            case BIRCH_FENCE_GATE:
-            case DARK_OAK_FENCE_GATE:
-            case JUNGLE_FENCE_GATE:
-            case SPRUCE_FENCE_GATE:
-
-            case ACACIA_DOOR:
-            case BIRCH_DOOR:
-            case DARK_OAK_DOOR:
-            case JUNGLE_DOOR:
-            case SPRUCE_DOOR:
-
-                // 1.14
-            case BLACK_BED:
-            case BLUE_BED:
-            case BROWN_BED:
-            case CYAN_BED:
-            case GRAY_BED:
-            case GREEN_BED:
-            case LIGHT_BLUE_BED:
-            case LIGHT_GRAY_BED:
-            case LIME_BED:
-            case MAGENTA_BED:
-            case ORANGE_BED:
-            case PINK_BED:
-            case PURPLE_BED:
-            case RED_BED:
-            case WHITE_BED:
-            case YELLOW_BED:
-
+            // 1.14
             case CAKE:
-
-            case CYAN_CARPET:
-            case BLACK_CARPET:
-            case BLUE_CARPET:
-            case BROWN_CARPET:
-            case GRAY_CARPET:
-            case GREEN_CARPET:
-            case LIGHT_BLUE_CARPET:
-            case LIGHT_GRAY_CARPET:
-            case LIME_CARPET:
-            case MAGENTA_CARPET:
-            case ORANGE_CARPET:
-            case PINK_CARPET:
-            case PURPLE_CARPET:
-            case RED_CARPET:
-            case WHITE_CARPET:
-            case YELLOW_CARPET:
-
-            case ANDESITE_WALL:
-            case BRICK_WALL:
-            case COBBLESTONE_WALL:
-            case DIORITE_WALL:
-            case GRANITE_WALL:
-            case END_STONE_BRICK_WALL:
-            case MOSSY_COBBLESTONE_WALL:
-            case MOSSY_STONE_BRICK_WALL:
-            case NETHER_BRICK_WALL:
-            case PRISMARINE_WALL:
-            case RED_NETHER_BRICK_WALL:
-            case RED_SANDSTONE_WALL:
-            case SANDSTONE_WALL:
-            case STONE_BRICK_WALL:
 
             case CACTUS:
             case CARROTS:
@@ -163,25 +128,6 @@ public class SSUtil {
             case END_PORTAL_FRAME:
             case END_PORTAL:
             case NETHER_PORTAL:
-
-            case OAK_FENCE:
-            case NETHER_BRICK_FENCE:
-
-            case OAK_FENCE_GATE:
-
-            case ACACIA_PRESSURE_PLATE:
-            case BIRCH_PRESSURE_PLATE:
-            case DARK_OAK_PRESSURE_PLATE:
-            case HEAVY_WEIGHTED_PRESSURE_PLATE:
-            case JUNGLE_PRESSURE_PLATE:
-            case LIGHT_WEIGHTED_PRESSURE_PLATE:
-            case OAK_PRESSURE_PLATE:
-            case SPRUCE_PRESSURE_PLATE:
-            case STONE_PRESSURE_PLATE:
-
-            case IRON_DOOR:
-            case OAK_DOOR:
-            case IRON_BARS:
 
             case SUNFLOWER:
             case LILAC:
@@ -215,28 +161,6 @@ public class SSUtil {
             case LILY_OF_THE_VALLEY:
             case WITHER_ROSE:
 
-            case SPRUCE_SAPLING:
-            case ACACIA_SAPLING:
-            case BAMBOO_SAPLING:
-            case BIRCH_SAPLING:
-            case DARK_OAK_SAPLING:
-            case JUNGLE_SAPLING:
-            case OAK_SAPLING:
-
-            case ACACIA_SIGN:
-            case SPRUCE_SIGN:
-            case BIRCH_SIGN:
-            case DARK_OAK_SIGN:
-            case JUNGLE_SIGN:
-            case OAK_SIGN:
-
-            case SPRUCE_WALL_SIGN:
-            case ACACIA_WALL_SIGN:
-            case BIRCH_WALL_SIGN:
-            case DARK_OAK_WALL_SIGN:
-            case JUNGLE_WALL_SIGN:
-            case OAK_WALL_SIGN:
-
             case SKELETON_SKULL:
             case WITHER_SKELETON_SKULL:
             case CREEPER_HEAD:
@@ -268,56 +192,8 @@ public class SSUtil {
             case WHITE_STAINED_GLASS_PANE:
             case YELLOW_STAINED_GLASS_PANE:
 
-            case ACACIA_TRAPDOOR:
-            case BIRCH_TRAPDOOR:
-            case DARK_OAK_TRAPDOOR:
-            case JUNGLE_TRAPDOOR:
-            case OAK_TRAPDOOR:
-            case SPRUCE_TRAPDOOR:
-
             case LILY_PAD:
             case COBWEB:
-
-            case ACACIA_BUTTON:
-            case BIRCH_BUTTON:
-            case DARK_OAK_BUTTON:
-            case JUNGLE_BUTTON:
-            case OAK_BUTTON:
-            case SPRUCE_BUTTON:
-
-            case BLACK_BANNER:
-            case BLUE_BANNER:
-            case BROWN_BANNER:
-            case CYAN_BANNER:
-            case GRAY_BANNER:
-            case GREEN_BANNER:
-            case LIGHT_BLUE_BANNER:
-            case LIGHT_GRAY_BANNER:
-            case LIME_BANNER:
-            case MAGENTA_BANNER:
-            case ORANGE_BANNER:
-            case PINK_BANNER:
-            case PURPLE_BANNER:
-            case RED_BANNER:
-            case WHITE_BANNER:
-            case YELLOW_BANNER:
-
-            case BLACK_WALL_BANNER:
-            case BLUE_WALL_BANNER:
-            case BROWN_WALL_BANNER:
-            case CYAN_WALL_BANNER:
-            case GRAY_WALL_BANNER:
-            case GREEN_WALL_BANNER:
-            case LIGHT_BLUE_WALL_BANNER:
-            case LIGHT_GRAY_WALL_BANNER:
-            case LIME_WALL_BANNER:
-            case MAGENTA_WALL_BANNER:
-            case ORANGE_WALL_BANNER:
-            case PINK_WALL_BANNER:
-            case PURPLE_WALL_BANNER:
-            case RED_WALL_BANNER:
-            case WHITE_WALL_BANNER:
-            case YELLOW_WALL_BANNER:
 
             case END_ROD:
             case FARMLAND:
@@ -364,31 +240,6 @@ public class SSUtil {
             case CONDUIT:
             case COMPOSTER:
 
-            case POTTED_ACACIA_SAPLING:
-            case POTTED_ALLIUM:
-            case POTTED_AZURE_BLUET:
-            case POTTED_BAMBOO:
-            case POTTED_BIRCH_SAPLING:
-            case POTTED_BLUE_ORCHID:
-            case POTTED_BROWN_MUSHROOM:
-            case POTTED_CACTUS:
-            case POTTED_CORNFLOWER:
-            case POTTED_DANDELION:
-            case POTTED_DARK_OAK_SAPLING:
-            case POTTED_DEAD_BUSH:
-            case POTTED_FERN:
-            case POTTED_JUNGLE_SAPLING:
-            case POTTED_LILY_OF_THE_VALLEY:
-            case POTTED_OAK_SAPLING:
-            case POTTED_ORANGE_TULIP:
-            case POTTED_OXEYE_DAISY:
-            case POTTED_PINK_TULIP:
-            case POTTED_POPPY:
-            case POTTED_RED_MUSHROOM:
-            case POTTED_RED_TULIP:
-            case POTTED_SPRUCE_SAPLING:
-            case POTTED_WHITE_TULIP:
-            case POTTED_WITHER_ROSE:
 
             case MELON_STEM:
             case ATTACHED_MELON_STEM:
@@ -398,8 +249,33 @@ public class SSUtil {
             case STONECUTTER:
             case BELL:
             case LANTERN:
-            case CAMPFIRE:
 
+            // 1.16
+            case CHAIN:
+            case CRIMSON_FUNGUS:
+            case CRIMSON_ROOTS:
+            case NETHER_SPROUTS:
+            case SOUL_LANTERN:
+            case SOUL_TORCH:
+            case TWISTING_VINES_PLANT:
+            case WARPED_FUNGUS:
+            case WARPED_ROOTS:
+            case WEEPING_VINES_PLANT:
+
+            // 1.17
+            case BIG_DRIPLEAF:
+            case BIG_DRIPLEAF_STEM:
+            case CAVE_VINES_PLANT:
+            case GLOW_LICHEN:
+            case HANGING_ROOTS:
+            case LIGHT:
+            case LIGHTNING_ROD:
+            case MOSS_CARPET:
+            case POINTED_DRIPSTONE:
+            case POWDER_SNOW:
+            case SCULK_SENSOR:
+            case SMALL_DRIPLEAF:
+            case SPORE_BLOSSOM:
                 holdsSnow = false;
                 break;
             default:
