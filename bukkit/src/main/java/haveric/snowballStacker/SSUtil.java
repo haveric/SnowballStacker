@@ -40,6 +40,8 @@ public class SSUtil {
             holdsSnow = false;
         } else if (blockData instanceof Fire) {
             holdsSnow = false;
+        } else if (blockData instanceof Fence) {
+            holdsSnow = false;
         } else if (blockData instanceof Gate) {
             holdsSnow = false;
         } else if (blockData instanceof GlassPane) {
@@ -63,6 +65,8 @@ public class SSUtil {
         } else if (blockType.contains("POTTED_")) {
             holdsSnow = false;
         } else if (blockType.contains("_BANNER")) {
+            holdsSnow = false;
+        } else if (blockType.contains("_CORAL")) {
             holdsSnow = false;
         } else {
             holdsSnow = canHoldSnow(block.getType());
@@ -202,44 +206,11 @@ public class SSUtil {
             case CHIPPED_ANVIL:
             case DAMAGED_ANVIL:
 
-            case BRAIN_CORAL:
-            case BUBBLE_CORAL:
-            case DEAD_BRAIN_CORAL:
-            case DEAD_BUBBLE_CORAL:
-            case DEAD_FIRE_CORAL:
-            case DEAD_HORN_CORAL:
-            case DEAD_TUBE_CORAL:
-            case FIRE_CORAL:
-            case HORN_CORAL:
-            case TUBE_CORAL:
-
-            case FIRE_CORAL_FAN:
-            case FIRE_CORAL_WALL_FAN:
-            case BRAIN_CORAL_FAN:
-            case BUBBLE_CORAL_FAN:
-            case HORN_CORAL_FAN:
-            case TUBE_CORAL_FAN:
-            case BRAIN_CORAL_WALL_FAN:
-            case BUBBLE_CORAL_WALL_FAN:
-            case DEAD_BRAIN_CORAL_FAN:
-            case DEAD_BUBBLE_CORAL_FAN:
-            case DEAD_FIRE_CORAL_FAN:
-            case DEAD_HORN_CORAL_FAN:
-            case DEAD_TUBE_CORAL_FAN:
-            case HORN_CORAL_WALL_FAN:
-            case TUBE_CORAL_WALL_FAN:
-            case DEAD_BRAIN_CORAL_WALL_FAN:
-            case DEAD_BUBBLE_CORAL_WALL_FAN:
-            case DEAD_FIRE_CORAL_WALL_FAN:
-            case DEAD_HORN_CORAL_WALL_FAN:
-            case DEAD_TUBE_CORAL_WALL_FAN:
-
             case WALL_TORCH:
             case PAINTING:
             case LECTERN:
             case CONDUIT:
             case COMPOSTER:
-
 
             case MELON_STEM:
             case ATTACHED_MELON_STEM:
@@ -257,9 +228,11 @@ public class SSUtil {
             case NETHER_SPROUTS:
             case SOUL_LANTERN:
             case SOUL_TORCH:
+            case TWISTING_VINES:
             case TWISTING_VINES_PLANT:
             case WARPED_FUNGUS:
             case WARPED_ROOTS:
+            case WEEPING_VINES:
             case WEEPING_VINES_PLANT:
 
             // 1.17
@@ -270,7 +243,6 @@ public class SSUtil {
             case HANGING_ROOTS:
             case LIGHT:
             case LIGHTNING_ROD:
-            case MOSS_CARPET:
             case POINTED_DRIPSTONE:
             case POWDER_SNOW:
             case SCULK_SENSOR:
