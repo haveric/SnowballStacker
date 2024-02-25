@@ -148,7 +148,7 @@ public class SSUtil {
             case REDSTONE_TORCH:
             case REDSTONE_WALL_TORCH:
 
-            case GRASS:
+            case SHORT_GRASS:
             case FERN:
             case SEAGRASS:
             case DANDELION:
