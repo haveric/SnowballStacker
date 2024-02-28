@@ -10,9 +10,9 @@ public class Config {
 
     private static SnowballStacker plugin;
 
-    private static String cfgFreezeWater = "Freeze_Water";
-    private static String cfgOnlySnowBiomes = "Only_Works_In_Snow_Biomes";
-    private static String cfgSnowGolemsCanStack = "Snow_Golems_Can_Stack";
+    private static final String cfgFreezeWater = "Freeze_Water";
+    private static final String cfgOnlySnowBiomes = "Only_Works_In_Snow_Biomes";
+    private static final String cfgSnowGolemsCanStack = "Snow_Golems_Can_Stack";
     private static FileConfiguration config;
     private static File configFile;
 

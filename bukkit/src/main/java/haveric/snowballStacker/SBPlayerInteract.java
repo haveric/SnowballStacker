@@ -30,9 +30,7 @@ public class SBPlayerInteract implements Listener {
     @EventHandler
     public void onProjectileHitEvent(ProjectileHitEvent event) {
         Entity entity = event.getEntity();
-        if (entity instanceof Snowball) {
-            Snowball snowball = (Snowball) entity;
-
+        if (entity instanceof Snowball snowball) {
             Location location = snowball.getLocation();
             World world = snowball.getWorld();
             Block block = world.getBlockAt(location);

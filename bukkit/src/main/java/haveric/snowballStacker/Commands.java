@@ -10,18 +10,18 @@ public class Commands implements CommandExecutor {
 
     private SnowballStacker plugin;
 
-    private static String cmdMain = "snowballstacker";
-    private static String cmdMainAlt = "ss";
+    private static final String cmdMain = "snowballstacker";
+    private static final String cmdMainAlt = "ss";
 
-    private static String cmdHelp = "help";
-    private static String cmdSetFreeze = "setfreeze";
-    private static String cmdSetSnowBiome = "setsnow";
-    private static String cmdSetGolemStack = "setgolem";
-    private static String cmdPerms = "perms";
-    private static String cmdPermsAlt = "perm";
+    private static final String cmdHelp = "help";
+    private static final String cmdSetFreeze = "setfreeze";
+    private static final String cmdSetSnowBiome = "setsnow";
+    private static final String cmdSetGolemStack = "setgolem";
+    private static final String cmdPerms = "perms";
+    private static final String cmdPermsAlt = "perm";
 
-    private static ChatColor defColor = ChatColor.WHITE;
-    private static ChatColor highlightColor = ChatColor.GOLD;
+    private static final ChatColor defColor = ChatColor.WHITE;
+    private static final ChatColor highlightColor = ChatColor.GOLD;
 
     public Commands(SnowballStacker ss) {
         plugin = ss;
@@ -33,11 +33,7 @@ public class Commands implements CommandExecutor {
 
         String title = msgColor + "[" + ChatColor.GRAY + plugin.getDescription().getName() + msgColor + "] ";
 
-        boolean op = false;
-        if (sender.isOp()) {
-            op = true;
-        }
-
+        boolean op = sender.isOp();
         boolean hasAdminPerm = false;
         if (sender instanceof Player) {
             hasAdminPerm = Perms.hasAdmin((Player) sender);

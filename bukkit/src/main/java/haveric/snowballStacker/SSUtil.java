@@ -13,18 +13,15 @@ public class SSUtil {
         BlockData blockData = block.getBlockData();
 
         String blockType = block.getType().toString().toUpperCase();
-        if (blockData instanceof Stairs) {
-            Stairs stairsData = (Stairs) blockData;
+        if (blockData instanceof Stairs stairsData) {
             if (stairsData.getHalf() == Stairs.Half.BOTTOM) {
                 holdsSnow = false;
             }
-        } else if (blockData instanceof Slab) {
-            Slab slabData = (Slab) blockData;
+        } else if (blockData instanceof Slab slabData) {
             if (slabData.getType() == Slab.Type.BOTTOM) {
                 holdsSnow = false;
             }
-        } else if (blockData instanceof Piston) {
-            Piston pistonData = (Piston) blockData;
+        } else if (blockData instanceof Piston pistonData) {
             if (pistonData.isExtended()) {
                 holdsSnow = false;
             }
